@@ -1,0 +1,204 @@
+\documentclass[10pt,oneside]{memoir}
+
+\usepackage{fontspec}
+
+\usepackage[abspath]{currfile}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{background}
+\usepackage[paperheight=5cm,paperwidth=9cm,margin=3mm]{geometry}
+\usepackage{slantsc}
+
+\usepackage{tabularx}
+\usepackage{multirow}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+
+%%%%%%%%%%%%%
+%  Helpers  %
+%%%%%%%%%%%%%
+
+\newcommand{\setbackground}[1]{
+    \backgroundsetup{%
+        scale=1,
+        color=black,
+        opacity=1,
+        angle=0,
+        contents={%
+            \includegraphics[width=\paperwidth,height=\paperheight]{#1}
+        }%
+    }%
+}
+
+\newcommand{\setrajdfont}{
+    \fontspec[
+        Path          = \currfileabsdir,
+        Ligatures     = TeX,
+        UprightFont   = fonts/CasablancaAntique.ttf,
+    ]{CasablancaAntique}
+}
+
+\newcommand{\fronthead}{
+    \begin{center}
+        \linespread{0}\selectfont
+        {\fontsize{14pt}{16pt}\selectfont\setrajdfont XIV RAJD COLLEGIUM PHYSICUM UJ}\\
+        \hrule%
+    \end{center}
+}
+
+
+%%%%%%%%%%%
+%  Entry  %
+%%%%%%%%%%%
+
+
+\newcommand{\entry}[5]{%
+    \clearpage
+    \setbackground{graphics/front.eps}
+    \linespread{1}\selectfont
+
+    \fronthead
+
+    \begin{flushright}
+        \textsc{Karta Uczestnika}
+    \end{flushright}
+
+    \begin{vplace}
+        \begin{center}
+            \linespread{0}\selectfont
+            \textbf{\Large #1 #2}
+        \end{center}
+    \end{vplace}
+
+    \begin{vplace}
+        \begin{minipage}[t]{.5\textwidth}
+            \begin{center}
+                \textsc{Autokar:}\\
+                \textbf{#5}
+            \end{center}
+        \end{minipage}%
+        \begin{minipage}[t]{.5\textwidth}
+            \begin{center}
+                \textsc{Trasa}\\
+                \textbf{#4}
+            \end{center}
+        \end{minipage}%
+    \end{vplace}
+
+    \begin{vplace}
+        \linespread{0}\selectfont
+        \vspace{.3em}
+        {\tiny Ta karta uprawnia do noclegu na mecie Rajdu, przejazdu autokarem na trasy dwudniowe oraz powrotu autokarem do Krakowa.}
+    \end{vplace}
+
+    \clearpage
+    \entrytwo%
+}
+
+\newcommand{\entrytwo}[9]{%
+    \clearpage
+    \setbackground{graphics/back.eps}
+
+    \linespread{0}\selectfont
+	\textbf{\large Ważne numery telefonów}\\
+    \hrule%
+
+    \begin{vplace}
+        \scriptsize
+        \linespread{1}\selectfont
+        \begin{tabularx}{\textwidth}{lrr}
+            \multicolumn{3}{l}{Przedstawiciel organizacji na Twojej trasie:}\\
+            \multicolumn{2}{r}{#1} & #2\\
+            &&\\
+            Metha Rajdu: & #5 & #6\\
+            Główny koordynator: & #7 & #8\\
+            Specjalista ds. tras: & #3 & #4\\
+            &&\\
+            \multicolumn{2}{l}{Numer alarmowy GOPR:} & #9\\
+            \multicolumn{2}{l}{Międzynarodowy telefon alarmowy:} & 112\\
+        \end{tabularx}
+    \end{vplace}
+
+    \clearpage
+}
+
+%%%%%%%%%%%%%%%%
+%  Commandant  %
+%%%%%%%%%%%%%%%%
+
+\newcommand{\commandant}[3]{%
+    \clearpage
+    \setbackground{graphics/front.eps}
+    \linespread{1}\selectfont
+
+    \fronthead
+
+    \begin{flushright}
+        \textsc{Karta Komendanta}
+    \end{flushright}
+
+    \begin{vplace}
+        \begin{center}
+            \linespread{0}\selectfont
+            \textbf{\Large #1}
+        \end{center}
+    \end{vplace}
+
+    \begin{vplace}
+        \begin{minipage}[t]{.5\textwidth}
+            \begin{center}
+                \textsc{Autokar:}\\
+                \textbf{#3}
+            \end{center}
+        \end{minipage}%
+        \begin{minipage}[t]{.5\textwidth}
+            \begin{center}
+                \textsc{Trasa}\\
+                \textbf{#2}
+            \end{center}
+        \end{minipage}%
+    \end{vplace}
+
+    \begin{vplace}
+        \linespread{0}\selectfont
+        \vspace{.3em}
+        {\tiny Ta karta uprawnia do noclegu w namiotach i hamakach uczestników Rajdu na noclegach pośrednich, noclegu na mecie Rajdu, przejazdu autokarem na trasy dwudniowe, powrotu autokarem do Krakowa oraz wydawania poleceń organizatorom i uczestnikom Rajdu.}
+    \end{vplace}
+
+    \clearpage
+    \commandanttwo
+}
+
+\newcommand{\commandanttwo}[6]{%
+    \clearpage
+    \setbackground{graphics/back.eps}
+
+    \linespread{0}\selectfont
+	\textbf{\large Ważne numery telefonów}\\
+    \hrule%
+
+    \begin{vplace}
+        \tiny
+        \linespread{.9}\selectfont
+        \begin{tabularx}{\textwidth}{lrr}
+            #2
+            &&\\
+            Metha Rajdu:&#3&#4\\
+            Specjalista ds. tras:&#5&#6\\
+            &&\\
+            \multicolumn{2}{l}{Numer alarmowy GOPR:} & #1\\
+            \multicolumn{2}{l}{Międzynarodowy telefon alarmowy:} & 112\\
+        \end{tabularx}
+    \end{vplace}
+    \clearpage
+}
+
+%%%%%%%%%%%%%%
+%  Document  %
+%%%%%%%%%%%%%%
+
+\begin{document}
+    \input{input.inc}
+\end{document}
